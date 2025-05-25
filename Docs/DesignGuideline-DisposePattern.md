@@ -256,16 +256,6 @@ finalizer에서 예외가 발생하면, .NET Framework 2.0 이후부터 CLR은 �
 
 ✓ **고려할 것**: 강제로 애플리케이션 도메인 언로드나 스레드 중단이 발생해도 finalizer가 반드시 실행되어야 하는 상황이라면, `CriticalFinalizerObject`를 포함하는 타입 계층을 사용하여 “critical finalizable object”를 생성 및 사용하는 것을 고려해 보세요.
 
-
-
-
-
-
-
-
-
-
-
 # 참조
 
 - [Dispose Pattern- Framework Design Guidelines](https://learn.microsoft.com/ko-kr/dotnet/standard/design-guidelines/dispose-pattern)
