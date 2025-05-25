@@ -4,15 +4,12 @@
 
 객체가 관리되지 않는 리소스를 사용하는 경우, 다음 사항을 수행해야 합니다:
 
-- 디스포즈 패턴을 구현하세요. 이를 위해 `IDisposable.Dispose`를 구현하여 관리되지 않는 리소스를 명확하게 해제할 수 있게 해야 합니다. 타입의 사용자가 해당 객체(그리고 그 객체가 사용하는 리소스)가 더 이상 필요하지 않을 때 `Dispose`를 호출합니다. `Dispose` 메서드는 관리되지 않는 리소스를 즉시 해제합니다.
+- Dispose 패턴을 구현하세요. 이를 위해 `IDisposable.Dispose`를 구현하여 관리되지 않는 리소스를 명확하게 해제할 수 있게 해야 합니다. 타입의 사용자가 해당 객체(그리고 그 객체가 사용하는 리소스)가 더 이상 필요하지 않을 때 `Dispose`를 호출합니다. `Dispose` 메서드는 관리되지 않는 리소스를 즉시 해제합니다.
 
 - 타입의 사용자가 `Dispose` 호출을 깜빡했을 경우, 관리되지 않는 리소스를 해제할 수 있는 방법을 제공해야 합니다. 이 방법에는 두 가지가 있습니다:
   
   - 안전 핸들을 사용하여 관리되지 않는 리소스를 래핑하는 것입니다. 이 방법이 권장됩니다. 안전 핸들은 `System.Runtime.InteropServices.SafeHandle` 추상 클래스에서 파생되며, 견고한 `Finalize` 메서드를 포함하고 있습니다. 안전 핸들을 사용할 경우, 단순히 `IDisposable` 인터페이스를 구현하고, `IDisposable.Dispose` 구현 내에서 안전 핸들의 `Dispose` 메서드를 호출하면 됩니다. 안전 핸들의 `Dispose`가 호출되지 않으면, 가비지 컬렉터가 안전 핸들의 파이널라이저를 자동으로 호출합니다.
-
-—또는—
-
-- 파이널라이저를 정의하세요. 파이널라이저는 타입의 사용자가 `IDisposable.Dispose`를 호출하지 않아도 관리되지 않는 리소스를 비결정적으로 해제할 수 있게 합니다.
+  - 파이널라이저를 정의하세요. 파이널라이저는 타입의 사용자가 `IDisposable.Dispose`를 호출하지 않아도 관리되지 않는 리소스를 비결정적으로 해제할 수 있게 합니다.
 
 > ⚠️ 경고
 > 
@@ -428,12 +425,6 @@ public class DisposableBaseWithSafeHandle : IDisposable
 ## **.NET의 기본 제공 SafeHandle 목록**
 
 다음은 [Microsoft.Win32.SafeHandles]([Microsoft.Win32.SafeHandles Namespace | Microsoft Learn](https://learn.microsoft.com/en-us/dotnet/api/microsoft.win32.safehandles?view=net-9.0)) 네임스페이스에서 제공하는 파생 클래스들로, 안전한 핸들을 제공합니다.
-
-
-
-
-
-
 
 # 참조
 
