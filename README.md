@@ -1,4 +1,4 @@
-# ImplementStandardDisposePattern
+# Implement Standard Dispose Pattern
 - `이펙티브 C# 아이템 17 : 표준 Dispose 패턴을 구현하라` 내용 정리 및 코드 저장소입니다.
 
 ## 목표
